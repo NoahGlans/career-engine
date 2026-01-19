@@ -30,5 +30,5 @@ Full-stack job application tracker with AI insights
 <img src="./screenshots/Resume Page.png" width="800" alt="Resume Page" />
 
 ### AI generated cover letter feedback
-<img src="./screenshots/AI Cover Letter View.png" width="800" alt="AI Cover Letter View" />
+<img src="./screenshots/AI Cover Letter view.png" width="800" alt="AI Cover Letter View" />
 <img src="./screenshots/AI Feedback.png" width="800" alt="AI Feedback" />
