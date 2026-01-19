@@ -1,0 +1,1680 @@
+/* -------------------------------------------- */
+/* Root / Global Variables */
+/* -------------------------------------------- */
+:root {
+  --bg: #f7f8f9; /* light neutral background */
+  --panel-bg: #ffffff; /* card/panel background */
+  --border: #dcdfe3;
+  --border-light: #e6e8ea;
+  --text: #1a1a1a; /* main text */
+  --text-light: #555; /* secondary text */
+  --accent: #0a66c2; /* primary accent (LinkedIn blue) */
+  --accent-light: #e1efff; /* hover/focus highlight */
+  --radius: 6px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+  --shadow-md: 0 2px 6px rgba(0,0,0,0.10);
+  --transition: 0.15s ease;
+  --font: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial;
+
+}
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+/* -------------------------------------------- */
+/* Body / Global Typography */
+/* -------------------------------------------- */
+body {
+  margin: 0;
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* -------------------------------------------- */
+/* Layout */
+/* -------------------------------------------- */
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.back-link {
+  text-decoration: none;
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.main-grid {
+  display: grid;
+  grid-template-columns: 2fr 2fr 1fr; 
+  height: 100%;
+  gap: 24px;
+  padding: 16px;
+}
+
+/* -------------------------------------------- */
+/* Panels */
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.panel.left {
+  border-right: 1px solid var(--border);
+}
+
+.panel.middle {
+  border-right: 1px solid var(--border);
+  padding: 8px;
+}
+
+.panel.right {
+  display: flex;           /* allow flexible layout */
+  flex-direction: column;  /* stack children vertically */
+  height: 100%;            /* fill grid cell height */
+  overflow-y: auto;        /* scroll if content exceeds height */
+  padding: 8px;
+  box-sizing: border-box;  /* include padding in height calculation */
+}
+
+/* Contained card inside right panel */
+.panel.right .panel-card {
+  flex: 1;                 /* take remaining space */
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--panel-bg);
+  padding: 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  min-height: 0;  
+}
+
+/* -------------------------------------------- */
+/* Cards */
+.form-card,
+.stats-card {
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  border-radius: 14px;
+  margin-top: auto;
+  padding: 10px 12px;
+  background: #ffffff;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+  box-shadow: none;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* equal columns */
+  gap: 16px;
+  width: 100%;
+}
+
+.upcoming-deadlines ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.upcoming-deadlines li {
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.03);
+  font-size: 12.5px;
+}
+
+.deadline-title {
+  font-weight: 600;
+  font-size: 13px;
+}
+
+.deadline-meta {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+.item-card {
+  background: #ffffff;
+  padding: 16px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0,0,0,0.12);
+}
+
+.compact {
+  padding: 12px;
+}
+
+/* -------------------------------------------- */
+/* Form Fields */
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+
+.field label {
+  font-size: 13px;
+  font-weight: 500;
+  margin-bottom: 4px;
+  color: var(--text-light);
+}
+
+.input-sm,
+select.input-sm {
+  padding: 6px 8px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: #fff;
+  transition: var(--transition);
+}
+
+.input-sm:focus,
+select.input-sm:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-light);
+}
+
+.inline-job-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.job-label {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+/* -------------------------------------------- */
+/* Buttons */
+button {
+  cursor: pointer;
+  font-family: var(--font);
+  border-radius: var(--radius);
+  border: none;
+  transition: var(--transition);
+}
+
+.btn-sm {
+  padding: 4px 10px;
+  font-size: 13px;
+  background: #f2f4f7;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.btn-sm:hover {
+  background: #e9ecf0;
+}
+
+.btn-primary-sm {
+  padding: 6px 12px;
+  font-size: 13px;
+  background: var(--accent);
+  color: #fff;
+  border: 1px solid var(--accent);
+}
+
+.btn-primary-sm:hover {
+  background: #004c99;
+}
+
+.btn-ghost-sm {
+  padding: 6px 12px;
+  font-size: 13px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.btn-ghost-sm:hover {
+  background: #f3f5f7;
+}
+
+.row-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* -------------------------------------------- */
+/* Stats */
+.stats-card h4 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.stats-card h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 6px;
+  width: 100%;
+  line-height: 1.2;
+}
+
+
+.stat-line {
+  font-size: 14px;
+  margin-top: 3px;
+  color: var(--text-light);
+}
+
+.stats-card li {
+  display: flex;
+  column-gap: 12px;
+}
+
+/* Alternating row contrast */
+.stats-card li:nth-child(odd) {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+
+/* Spacing between rows */
+.stats-card li + li {
+  margin-top: 6px;
+}
+
+.stats-card li:hover {
+  background-color: rgba(37, 99, 235, 0.08);
+}
+
+/* Right value */
+.stats-card li span.value {
+  font-weight: 600;
+  color: var(--text);
+}
+/* Left label */
+.stats-card li span.label {
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+/* Subtle hover */
+.stats-card li:hover {
+  background: var(--accent-light);
+}
+
+/* Status color indicators */
+.stats-card li.applied {
+  border-left: 4px solid #2563eb;
+}
+
+.stats-card li.in-progress {
+  border-left: 4px solid #10b981;
+}
+
+.stats-card li.interview {
+  border-left: 4px solid #ff9d00;
+}
+
+.stats-card li.rejected {
+  border-left: 4px solid #ef4444;
+}
+
+.stats-card li.pending {
+  border-left: 4px solid #6b7280;
+}
+
+/* -------------------------------------------- */
+/* Application List */
+.list-scroll {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: #fafafa;
+  border: 1px solid var(--border-light);
+  padding: 12px;
+  border-radius: var(--radius);
+}
+
+.item-title {
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text);
+}
+
+.item-meta {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.item-meta.light {
+  color: var(--text-light);
+}
+
+.item-sub {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.item-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+/* -------------------------------------------- */
+/* Middle Panel Mini-list */
+.mini-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.mini-list li {
+  margin-bottom: 6px;
+}
+
+/* -------------------------------------------- */
+/* Scrollbar Styling */
+.panel.right::-webkit-scrollbar {
+  width: 8px;
+}
+
+.panel.right::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border-radius: 4px;
+}
+
+.panel.right::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+}
+
+.panel.right::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.panel.right::-webkit-scrollbar-track:hover {
+  background: #e1e1e1;
+}
+/* -------------------------------------------- */
+/* Login Page */
+/* -------------------------------------------- */
+
+.page-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  padding: 24px;
+}
+
+/* Login Card */
+.login-card {
+  width: 100%;
+  max-width: 360px;
+  background: var(--panel-bg);
+  padding: 24px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Title */
+.login-card h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: center;
+  color: var(--text);
+}
+
+/* -------------------------------------------- */
+/* Login Form */
+/* -------------------------------------------- */
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-card input {
+  padding: 8px 10px;
+  font-size: 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #fff;
+  transition: var(--transition);
+}
+
+.login-card input:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-light);
+}
+
+/* Submit Button */
+.login-card button[type="submit"] {
+  margin-top: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: var(--radius);
+  border: 1px solid var(--accent);
+}
+
+.login-card button[type="submit"]:hover {
+  background: #004c99;
+}
+
+/* Message (success / error) */
+.message {
+  font-size: 13px;
+  padding: 8px;
+  border-radius: var(--radius);
+  background: #f3f4f6;
+  color: var(--text-light);
+  border: 1px solid var(--border-light);
+}
+
+/* -------------------------------------------- */
+/* Register Link */
+/* -------------------------------------------- */
+
+.register-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.register-link button {
+  background: none;
+  border: none;
+  color: var(--accent);
+  font-size: 13px;
+  padding: 0;
+}
+
+.register-link button:hover {
+  text-decoration: underline;
+}
+/* -------------------------------------------- */
+/* Modal Overlay */
+/* -------------------------------------------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* -------------------------------------------- */
+/* Modal Container */
+/* -------------------------------------------- */
+.modal-content {
+  background: var(--panel-bg);
+  border-radius: var(--radius);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+  padding: 24px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: modalFadeIn 0.15s ease;
+}
+
+/* Larger modal variant */
+.large-modal {
+  max-width: 620px;
+}
+
+/* -------------------------------------------- */
+/* Modal Title */
+/* -------------------------------------------- */
+.modal-content h2 {
+  margin: 0 0 6px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* -------------------------------------------- */
+/* Modal Form Fields */
+/* -------------------------------------------- */
+.modal-content label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-light);
+  margin-top: 8px;
+}
+
+.modal-content input,
+.modal-content textarea {
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: var(--font);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #fff;
+  transition: var(--transition);
+}
+
+.modal-content textarea {
+  resize: vertical;
+}
+
+.modal-content input:focus,
+.modal-content textarea:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-light);
+}
+
+/* -------------------------------------------- */
+/* Modal Buttons */
+/* -------------------------------------------- */
+.modal-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+/* Primary action */
+.modal-buttons button {
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.modal-buttons button:hover {
+  background: #004c99;
+}
+
+/* Secondary / Cancel */
+.modal-buttons button.secondary {
+  background: #f2f4f7;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.modal-buttons button.secondary:hover {
+  background: #e9ecf0;
+}
+
+/* -------------------------------------------- */
+/* Modal Scrollbar */
+/* -------------------------------------------- */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* -------------------------------------------- */
+/* Animations */
+/* -------------------------------------------- */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* -------------------------------------------- */
+/* Dashboard Layout */
+/* -------------------------------------------- */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* left column wider */
+  gap: 16px;
+  padding: 16px;
+  height: calc(100vh - 65px);
+  max-width: 1400px; /* optional max width */
+  margin: 0 auto;
+  box-sizing: border-box;
+  overflow: hidden; /* ensures children don’t escape */
+}
+
+/* Columns */
+.left-column{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  padding: 16px;
+}
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* -------------------------------------------- */
+/* Dashboard Cards */
+/* -------------------------------------------- */
+.dashboard-container .card {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+/* Card titles */
+.dashboard-container .card h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text);
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 6px;
+  width: 100%;
+}
+
+/* -------------------------------------------- */
+/* Content Width Control */
+/* -------------------------------------------- */
+.dashboard-container .card > * {
+  max-width: 1200px;
+}
+
+.dashboard-container .card h2 {
+  max-width: 100%;
+}
+
+/* -------------------------------------------- */
+/* Recent Applications (Responsive Two-Column) */
+/* -------------------------------------------- */
+
+.recent-app-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 equal columns */
+  gap: 16px;              /* spacing between rows and columns */
+  width: 100%;        /* full width of the card */
+  justify-items: center;   /* keeps cards centered in each grid cell */
+  padding: 0;
+}
+
+/* Individual application card */
+.recent-app {
+  width: 100%;        /* fills its grid cell */   /* keeps it from being too wide */
+  display: flex;
+  flex-direction: column;
+  padding: 12px;
+  background: #fafafa;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recent-app-list-wrapper {
+  display: flex;             /* make wrapper a flex container */
+  justify-content: center;   /* center the grid horizontally */
+  width: 100%;               /* wrapper takes full width of left column */
+  box-sizing: border-box;
+  padding: 8px 0;            /* optional padding top/bottom */
+}
+
+.recent-app:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow, 0 4px 12px rgba(0,0,0,0.1));
+}
+
+.recent-app:nth-child(2n) {
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  padding-left: 12px;
+}
+
+/* Application text */
+.app-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.app-info strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.app-info p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+/* Make the card a column flex container */
+.recent-apps-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  height: 600px; /* or use max-height: calc(100vh - 100px) for responsive height */
+  max-height: 100%;
+  box-sizing: border-box;
+}
+.recent-app-list-wrapper {
+  flex: 1;             /* take all remaining space below h2 */
+  overflow-y: auto;    /* scroll only this area */
+  padding-right: 4px;  /* optional, prevent scrollbar from overlapping cards */
+}
+
+
+
+/* Status badge */
+.status-badge {
+  margin-top: 8px;
+  align-self: flex-start;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 4px;
+}
+
+/* Responsive: single column on smaller screens */
+@media (max-width: 768px) {
+  .recent-app-list {
+    grid-template-columns: 1fr;
+    padding: 0 8px; /* slightly less padding on mobile */
+  }
+
+  .recent-app:nth-child(2n) {
+    border-left: none;
+    padding-left: 12px;
+  }
+}
+
+
+/* Status badge */
+.status-badge {
+  margin-top: 8px;
+  align-self: flex-start;
+  padding: 2px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 4px;
+}
+
+/* Responsive: single column on smaller screens */
+@media (max-width: 768px) {
+  .recent-app-list {
+    grid-template-columns: 1fr;
+  }
+
+  .recent-app:nth-child(2n) {
+    border-left: none;
+    padding-left: 12px;
+  }
+}
+
+
+/* -------------------------------------------- */
+/* Status Badge */
+/* -------------------------------------------- */
+.status-badge {
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: 999px;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* -------------------------------------------- */
+/* Activity Summary */
+/* -------------------------------------------- */
+.left-column .card p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-light);
+  max-width: 520px;
+}
+
+.stats-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stats-card li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+
+  background: transparent;
+  border: none;
+}
+/* -------------------------------------------- */
+/* Quick Actions */
+/* -------------------------------------------- */
+.action-btn {
+  padding: 10px 12px;
+  font-size: 14px;
+  text-align: left;
+
+  background: #f2f4f7;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+
+  cursor: pointer;
+  transition: var(--transition);
+
+  max-width: 260px;
+  width: 100%;
+}
+
+.action-btn:hover {
+  background: #e9ecf0;
+}
+
+/* Primary emphasis */
+.action-btn:last-child {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.action-btn:last-child:hover {
+  background: #004c99;
+}
+
+.actions {
+  display: flex;
+  gap: 8 px;
+  justify-content: flex-end;
+  margin-top: 12px;
+}
+
+/* -------------------------------------------- */
+/* Responsive */
+/* -------------------------------------------- */
+@media (max-width: 900px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -------------------------------------------- */
+/* Coverletter Layout (shared with ApplicationPage) */
+/* -------------------------------------------- */
+
+.app-layout {
+  height: calc(100vh - 64px); 
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* -------------------------------------------- */
+/* Page Header */
+/* -------------------------------------------- */
+
+.page-header {
+  display: flex;
+  align-items: center;
+}
+
+.back-button {
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.back-button:hover {
+  text-decoration: underline;
+}
+
+/* -------------------------------------------- */
+/* Main Grid Layout */
+/* -------------------------------------------- */
+
+.main-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* create and list */
+  gap: 16px;
+  min-height: 0; /* critical for scroll */
+}
+
+/* -------------------------------------------- */
+/* Panels */
+/* -------------------------------------------- */
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+.panel.left,
+.panel.right {
+  min-height: 0;
+}
+
+/* -------------------------------------------- */
+/* Cards */
+/* -------------------------------------------- */
+
+.form-card,
+.panel-card {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 0;
+}
+
+/* Right-side list scroll container */
+.panel-card {
+  flex: 1;
+}
+.cl-scrollable-list {
+  flex: 1;
+  overflow-y: auto;}
+
+/* -------------------------------------------- */
+/* Titles */
+/* -------------------------------------------- */
+
+.app-layout h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.form-card h2 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* -------------------------------------------- */
+/* Form Fields */
+/* -------------------------------------------- */
+
+.form-card input,
+.form-card select,
+.panel-card input,
+.panel-card select {
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: var(--font);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #fff;
+  transition: var(--transition);
+}
+
+.form-card input:focus,
+.form-card select:focus,
+.panel-card input:focus,
+.panel-card select:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-light);
+}
+
+.panel-left{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.panel.right {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+/* -------------------------------------------- */
+/* Cover Letter List */
+/* -------------------------------------------- */
+
+.panel-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.panel-card li {
+  background: #fff;
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 14px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* -------------------------------------------- */
+/* Text Content */
+/* -------------------------------------------- */
+
+.panel-card strong {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.panel-card p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-light);
+  line-height: 1.4;
+}
+
+/* PDF Preview */
+.pdf-preview {
+  font-size: 13px;
+  color: var(--text-light);
+  border: 1px solid var(--border-light);
+  background: #f9f9f9;
+  padding: 8px;
+  border-radius: var(--radius);
+  max-height: 150px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* -------------------------------------------- */
+/* Buttons */
+/* -------------------------------------------- */
+
+.form-card button,
+.panel-card button {
+  width: fit-content;
+  padding: 8px 12px;
+  font-size: 14px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #f2f4f7;
+  color: var(--text);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.form-card button:hover,
+.panel-card button:hover {
+  background: #e9ecf0;
+}
+
+/* Primary buttons */
+.form-card button,
+.panel-card button:first-of-type {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.form-card button:hover,
+.panel-card button:first-of-type:hover {
+  background: #004c99;
+}
+
+/* Button spacing inside list */
+.panel-card li button {
+  margin-right: 8px;
+  margin-top: 4px;
+}
+
+/* -------------------------------------------- */
+/* Scrollbar (Right Panel) */
+/* -------------------------------------------- */
+
+.panel-card::-webkit-scrollbar {
+  width: 8px;
+}
+
+.panel-card::-webkit-scrollbar-thumb {
+  background: #cccccc;
+  border-radius: 4px;
+}
+
+.panel-card::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+}
+
+.panel-card::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* -------------------------------------------- */
+/* Responsive */
+/* -------------------------------------------- */
+
+@media (max-width: 900px) {
+  .main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-card {
+    max-height: none;
+  }
+}
+
+/* -------------------------------------------- */
+/* Resume Page Layout */
+/* -------------------------------------------- */
+.resume-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* -------------------------------------------- */
+/* Page Header */
+/* -------------------------------------------- */
+.resume-page .page-header {
+  display: flex;
+  align-items: center;
+}
+
+.resume-page .back-button {
+  font-size: 14px;
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.resume-page .back-button:hover {
+  text-decoration: underline;
+}
+
+/* -------------------------------------------- */
+/* Page Titles */
+/* -------------------------------------------- */
+.resume-page h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.resume-page h2 {
+  margin: 16px 0 4px 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* -------------------------------------------- */
+/* Resume List */
+/* -------------------------------------------- */
+.resume-page ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Resume Card */
+.resume-page li {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  padding: 14px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  max-width: 720px;
+}
+
+/* -------------------------------------------- */
+/* Resume Content */
+/* -------------------------------------------- */
+.resume-page li a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 4px;
+}
+
+.resume-page li a:hover {
+  text-decoration: underline;
+}
+
+.resume-page li {
+  font-size: 14px;
+  color: var(--text);
+}
+
+/* -------------------------------------------- */
+/* Inputs (Create + Edit) */
+/* -------------------------------------------- */
+.resume-page input {
+  max-width: 560px;
+  padding: 8px 10px;
+  font-size: 14px;
+  font-family: var(--font);
+
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #fff;
+  transition: var(--transition);
+}
+
+.resume-page input:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--accent-light);
+}
+
+/* -------------------------------------------- */
+/* Buttons */
+/* -------------------------------------------- */
+.resume-page button {
+  max-width: 200px;
+  padding: 8px 12px;
+  font-size: 14px;
+
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #f2f4f7;
+  color: var(--text);
+
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.resume-page button:hover {
+  background: #e9ecf0;
+}
+
+/* Primary action (Create / Save) */
+.resume-page button:first-of-type {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.resume-page button:first-of-type:hover {
+  background: #004c99;
+}
+
+/* Button spacing */
+.resume-page li button,
+.resume-page > div button {
+  margin-right: 8px;
+  margin-top: 4px;
+}
+
+/* -------------------------------------------- */
+/* Create Resume Section */
+/* -------------------------------------------- */
+.resume-page > div:last-of-type {
+  background: var(--panel-bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+
+  padding: 16px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  max-width: 720px;
+}
+
+/* -------------------------------------------- */
+/* Loading / Empty States */
+/* -------------------------------------------- */
+.resume-page > p {
+  font-size: 14px;
+  color: var(--text-light);
+}
+
+/* -------------------------------------------- */
+/* Responsive */
+/* -------------------------------------------- */
+@media (max-width: 800px) {
+  .resume-page {
+    padding: 12px;
+  }
+
+  .resume-page li,
+  .resume-page > div:last-of-type {
+    max-width: 100%;
+  }
+}
+/* ===============================
+   AI MODAL OVERLAY
+   =============================== */
+
+.ai-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+
+/* ===============================
+   AI MODAL CARD
+   =============================== */
+
+.ai-modal {
+  background: #ffffff;
+  width: min(60vw, 900px);
+  max-height: 80vh;
+  border-radius: 14px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+
+/* ===============================
+   HEADER
+   =============================== */
+
+.ai-modal-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #f9fafb;
+}
+
+.ai-modal-header h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ai-modal-header button {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #374151;
+}
+
+.ai-modal-header button:hover {
+  color: #111827;
+}
+
+
+/* ===============================
+   BODY (SCROLLABLE CONTENT)
+   =============================== */
+
+.ai-modal-body {
+  padding: 20px 24px;
+  overflow-y: auto;
+  flex: 1;
+  color: #1f2937;
+  line-height: 1.6;
+}
+
+.ai-modal-body h3 {
+  margin-top: 24px;
+  margin-bottom: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #111827;
+}
+
+.ai-modal-body p {
+  margin: 0 0 12px 0;
+}
+
+.ai-modal-body ul {
+  margin: 8px 0 0 0;
+  padding-left: 20px;
+}
+
+.ai-modal-body li {
+  margin-bottom: 8px;
+}
+
+
+/* ===============================
+   LOADING STATE
+   =============================== */
+
+.ai-modal-body p {
+  font-size: 0.95rem;
+}
+
+.ai-modal-body p:only-child {
+  text-align: center;
+  color: #6b7280;
+}
+
+
+/* ===============================
+   ERROR STATE
+   =============================== */
+
+.ai-modal-body .error {
+  background: #fee2e2;
+  color: #991b1b;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+
+/* ===============================
+   FOOTER
+   =============================== */
+
+.ai-modal-footer {
+  padding: 14px 20px;
+  border-top: 1px solid #e5e7eb;
+  display: flex;
+  justify-content: flex-end;
+  background: #f9fafb;
+}
+
+.ai-modal-footer button {
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.ai-modal-footer button:hover {
+  background: #1d4ed8;
+}
+
+
+/* ===============================
+   RESPONSIVE
+   =============================== */
+
+@media (max-width: 768px) {
+  .ai-modal {
+    width: 90vw;
+    max-height: 85vh;
+  }
+}
+/* =========================
+   NAVBAR
+   ========================= */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 45px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* LEFT SECTION */
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.navbar-logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.navbar-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #111827;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+/* RIGHT SECTION */
+.navbar-right {
+  display: flex;
+  align-items: center;
+}
+
+/* PROFILE ICON */
+.navbar-profile-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+  padding: 4px;
+
+  transition: background 0.15s ease, box-shadow 0.15s ease,
+    transform 0.1s ease;
+}
+
+.navbar-profile-icon:hover {
+  background: #f3f4f6;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
+}

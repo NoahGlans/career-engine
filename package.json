@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "react-router-dom": "^7.9.5",
+    "recharts": "^3.5.0",
+    "victory": "^37.3.6"
+  }
+}
